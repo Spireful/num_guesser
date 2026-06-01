@@ -9,10 +9,8 @@ bool askPlayAgain()
               << "2. No \n"
               << ">> ";
     int choice{};
-    do
-    {
-        std::cin >> choice;
-    } while (choice < 1 || choice > 2);
+    choice = intInputGuard(1, 2);
+
     if (choice == 1)
     {
         return true;
@@ -28,18 +26,27 @@ int getDifficultyLevel()
               << "3. Hard (3 chances) \n"
               << ">> ";
     int choice{};
-    do
-    {
-        std::cin >> choice;
-    } while (choice < 1 || choice > 3);
+    choice = intInputGuard(1, 3);
+
     return choice;
 }
 
 int getUserGuess()
 {
-    std::cout << "Enter your guess: ";
+    std::cout << "\nEnter your guess: ";
     int input{};
     std::cin >> input;
+
+    return input;
+}
+
+int intInputGuard(int initial, int limit)
+{
+    int input{};
+    do
+    {
+        std::cin >> input;
+    } while (input < initial || input > limit);
 
     return input;
 }
@@ -101,6 +108,6 @@ int returnDifficultyLives(int difficultyLevel)
 
 void welcomeMessage()
 {
-    std::cout << "Welcome to the Number Guessing Game! \n"
-              << "I'm thinking of a number between 1 and 100. \n";
+    std::cout << "\nWelcome to the Number Guessing Game! \n"
+              << "I'm thinking of a number between 1 and 100. \n\n";
 }
